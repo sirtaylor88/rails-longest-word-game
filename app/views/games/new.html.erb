@@ -1,0 +1,26 @@
+<div class="container text-center" style="margin-top: 40px">
+  <h1>New Game</h1>
+  <hr>
+    <table>
+      <tr>
+        <%@grid.each do |letter|%>
+        <td><span class="letter"><%="#{letter}"%></span></td>
+        <%end%>
+      </tr>
+    </table>
+  </hr>
+</div>
+
+<div class="container w-50" style="margin-top: 40px">
+  <form action="/score" method="POST">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="form-group">
+      <label for="input">What is the longest word you can find?</label>
+      <div class="d-flex">
+        <input type="text" class= "form-control" id="input" name="input">
+        <input type="hidden" name="grid" value=<%="#{@grid.join}"%>>
+        <input type="submit" class="form-control btn btn-primary" value="Play" style="width: 80px">
+      </div>
+    </div>
+  </form>
+</div>
